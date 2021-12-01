@@ -1,5 +1,6 @@
 <script>
 import { VueAutosuggest } from 'vue-autosuggest'
+import debounce from '../helpers/debounce'
 
 const getInputProps = (isDisabled = false) => {
   return {
@@ -29,11 +30,11 @@ export default {
       } else {
         this.selected = this.filteredOptions[0].data[0]
       }
-      if(this.onSelect) {
+      if (this.onSelect) {
         this.onSelect(this.selected)
       }
     },
-    async onInputChange(text) {
+    onInputChange: debounce(async function (text) {
       if (text === '' || text === undefined) {
         return
       }
@@ -74,7 +75,7 @@ export default {
           },
         ]
       }
-    },
+    }, 500),
   },
 }
 </script>

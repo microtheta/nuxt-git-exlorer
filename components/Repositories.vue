@@ -13,9 +13,13 @@ export default {
   methods: {
     async fetchRepos() {
       try {
-        this.repos = await fetch(
+        const response = await fetch(
           `https://api.github.com/users/${this.id}/repos`
-        ).then((data) => data.json())
+        )
+        if(response.status !== 200 ) {
+          throw new Error()
+        }
+        this.repos = await response.json()
         this.loading = false
       } catch (e) {
         this.error = e.message || 'Something went wrong.'

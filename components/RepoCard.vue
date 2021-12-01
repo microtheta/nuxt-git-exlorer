@@ -3,23 +3,32 @@ export default {
   props: ['repo'],
 }
 </script>
+<style>
+.repo-card .card-body {
+  height: 160px;
+  overflow: auto;
+}
+</style>
 <template>
-  <div>
+  <div class="repo-card">
     <b-card :title="repo.description" header-tag="header" footer-tag="footer">
       <template #header>
         <h6 class="mb-0 font-semibold">{{ repo.name }}</h6>
       </template>
       <b-card-text>
-        <b-link :href="repo.html_url" target="_blank">{{
-          repo.full_name
-        }}
-        <b-icon icon="link" class="ml-1" />
+        <b-link :href="repo.html_url" target="_blank"
+          >{{ repo.full_name }}
+          <b-icon icon="link" class="ml-1" />
         </b-link>
 
         <div>
-          <b-badge class="mr-1" variant="light" :key="topic" v-for="topic in repo.topics">{{
-            topic
-          }}</b-badge>
+          <b-badge
+            class="mr-1"
+            variant="light"
+            :key="topic"
+            v-for="topic in repo.topics"
+            >{{ topic }}</b-badge
+          >
         </div>
       </b-card-text>
       <template #footer>
