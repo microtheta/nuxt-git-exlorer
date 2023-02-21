@@ -6,7 +6,7 @@ const getInputProps = (isDisabled = false) => {
   return {
     id: 'autosuggest__input',
     disabled: isDisabled,
-    placeholder: 'Search here...',
+    placeholder: 'Search for a github username...',
     autoFocus: true,
   }
 }
